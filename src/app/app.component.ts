@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {ChangeDetectionStrategy, Component, OnInit} from '@angular/core';
 import {select, Store} from '@ngrx/store';
 import {selectConfig} from '../store/selectors/config.selectors';
 import {IAppState} from '../store/state/app.state';
@@ -13,11 +13,17 @@ export class AppComponent implements OnInit {
     title = 'ngrx-playground';
 
     config$ = this._store.pipe(select(selectConfig));
+    todoObj = {name: 'TEST'};
 
+    // tslint:disable-next-line:variable-name
     constructor(private _store: Store<IAppState>) {
     }
 
     ngOnInit() {
         this._store.dispatch(new GetConfig());
+    }
+
+    changeTodo() {
+        this.todoObj.name = 'TEST 1';
     }
 }

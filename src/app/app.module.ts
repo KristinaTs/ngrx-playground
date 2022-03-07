@@ -7,23 +7,26 @@ import {HttpClientModule} from '@angular/common/http';
 import {StoreModule} from '@ngrx/store';
 import {appReducers} from '../store/reducers/app.reducers';
 import {EffectsModule} from '@ngrx/effects';
-import {UserEffects} from '../store/effects/user.effects';
-import {ConfigEffects} from '../store/effects/config.effects';
 import {StoreRouterConnectingModule} from '@ngrx/router-store';
 import {StoreDevtoolsModule} from '@ngrx/store-devtools';
 import {environment} from '../environments/environment';
 import { UsersComponent } from './users/users.component';
+import { CitiesComponent } from './cities/cities.component';
+import {CitiesEffects} from '../store/effects/cities.effects';
+import { TodolistComponent } from './todolist/todolist.component';
 
 @NgModule({
     declarations: [
         AppComponent,
-        UsersComponent
+        UsersComponent,
+        CitiesComponent,
+        TodolistComponent
     ],
     imports: [
         BrowserModule,
         HttpClientModule,
         StoreModule.forRoot(appReducers),
-        EffectsModule.forRoot([UserEffects, , ConfigEffects]),
+        EffectsModule.forRoot([CitiesEffects]),
         StoreRouterConnectingModule.forRoot({stateKey: 'router'}),
         !environment.production ? StoreDevtoolsModule.instrument() : [],
         AppRoutingModule
